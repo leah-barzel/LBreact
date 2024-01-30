@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import SwitchesSize from '../../Services/SwitchesSize';
 
 
 const BisnessData = () => {
@@ -50,6 +51,8 @@ const BisnessData = () => {
         {isEditing ? (<Button variant="contained"onClick={handleSave}>Save</Button>) 
         : (<Button variant="contained"onClick={handleEdit}>Edit</Button>)}
       </div>
+      <br/>
+      <SwitchesSize/>
     </div>
   );
 };
