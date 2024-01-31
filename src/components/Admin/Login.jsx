@@ -1,27 +1,23 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import axios from 'axios';
-//import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import AdminPage from './AdminPage';
+import { useNavigate } from 'react-router-dom';
 
 
-const Login = observer(() => {
+  const Login = observer(() => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  console.log('Login component loaded');
-  
-  const [isCorrectPassword , setIsCorrectPassword] = useState(false)
-   //const history = useHistory()
+  const navigate = useNavigate()
   const handleLogin = () => {
     const data = { name, password };
     axios
       .post('http://localhost:8787/login', data)
       .then(response => {
         console.log(response.data);
-        //history.push("/AdminPage");
-        setIsCorrectPassword(true)
+        navigate("/AdminPage");
       })
       .catch(error => {
         console.error(error);
@@ -42,11 +38,7 @@ const Login = observer(() => {
       <br/><br/>
       <Button
       variant="contained"
-      onClick={handleLogin}>Send</Button>
-      <br/>
-      {isCorrectPassword && <AdminPage/>}
-      <div>
-      </div>
+      onClick={handleLogin}>Login</Button>
     </>
   );
 });

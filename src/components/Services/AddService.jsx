@@ -7,10 +7,12 @@ import ServiceList from './ServiceList.jsx';
 
 const AddService = (observer(({onClose}) =>{
 const [name , setName] = useState('');
+const [description , setDescription] = useState('')
 
 const handleAddService = () => {
-    addServices({name});
+    addServices({name , description});
     setName('')
+    setDescription('')
     console.log('its work')
     console.log(dataStore.services)
     onClose()
@@ -31,9 +33,13 @@ const handleAddService = async () => {
   
     return(
         <>
-        <TextField id="outlined-basic" variant="outlined" label="serviceDetails" 
+        <TextField id="outlined-basic" variant="outlined" label="serviceName" 
         value={name} 
-        onChange={(e)=>{ setName(e.target.value)}}/>
+        onChange={(e1)=>{ setName(e1.target.value)}}/>
+        <br/><br/>
+        <TextField id="outlined-basic" variant="outlined" label="description" 
+        value={description} 
+        onChange={(e2)=>{ setDescription(e2.target.value)}}/>
         <br/><br/>
        <Button variant="contained"
        onClick={handleAddService}>Add service</Button>

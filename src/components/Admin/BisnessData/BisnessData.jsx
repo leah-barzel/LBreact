@@ -6,9 +6,10 @@ import SwitchesSize from '../../Services/SwitchesSize';
 
 const BisnessData = () => {
   const [name, setName] = useState('My Music');
+  const [adminName , setadminName] = useState ('Leah Barzel')
   const [address, setAddress] = useState('Ramat Shlomo , Jerusalem');
   const [email, setEmail] = useState('lb0534110928@gmail.com');
-  const [phone, setPhone] = useState('0534110928');
+  const [details, setDetails] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
@@ -30,6 +31,11 @@ const BisnessData = () => {
         : (<span>{name}</span>)}
       </div><br/>
       <div>
+        {isEditing ? (<TextField id="outlined-basic" label="adminName" variant="outlined" 
+        type="text" value={adminName} onChange={(e) => setadminName(e.target.value)}/>) 
+        : (<span>{adminName}</span>)}
+      </div><br/>
+      <div>
         {isEditing ? (<TextField id="outlined-basic" label="Address" variant="outlined" 
         type="text"value={address} onChange={(e) => setAddress(e.target.value)}/>) 
         : (<span>{address}</span>)}
@@ -42,9 +48,9 @@ const BisnessData = () => {
       </div>
         <br/>
       <div>
-        {isEditing ? (<TextField id="outlined-basic" label="Phone" variant="outlined" 
-        type="tel" value={phone} onChange={(e) => setPhone(e.target.value)}/>) 
-        : (<span>{phone}</span>)}
+        {isEditing ? (<TextField id="outlined-basic" label="details" variant="outlined" 
+        type="tel" value={details} onChange={(e) => setDetails(e.target.value)}/>) 
+        : (<span>{details}</span>)}
       </div>
       <br/>
       <div>

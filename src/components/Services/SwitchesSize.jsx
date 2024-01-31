@@ -3,13 +3,11 @@ import Switch from '@mui/material/Switch';
 import AddService from './AddService';
 import { useState } from 'react';
 import ServiceList from './ServiceList';
-
 const label = { inputProps: { 'area-label': 'Size switch demo' } };
 
 export default function SwitchesSize() {
   const [isConfirmationActive, setConfirmationActive] = useState(false);
   
-
   const handleSwitchChange = (event) => {
     setConfirmationActive(event.target.checked);
   };
