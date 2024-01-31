@@ -9,8 +9,9 @@ const AddService = (observer(({onClose}) =>{
 const [name , setName] = useState('');
 const [description , setDescription] = useState('')
 
+
 const handleAddService = () => {
-    addServices({name , description});
+    addServices({'name':name , 'description':description});
     setName('')
     setDescription('')
     console.log('its work')
