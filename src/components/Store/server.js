@@ -17,28 +17,18 @@ export async function addServices(service) {
     }
 }
 
-/*
-export async function getServices(){
-const services  = await axios.get('http://localhost:8787/services');
-dataStore.setServices(services.data);
+export async function getAppointments() {
+  const appointments = await axios.get('http://localhost:8787/appointments');
+  dataStore.setAppointments(appointments);
 }
-export async function addServices(data ) {
-  console.log(data )
-    const res = await axios.post('http://localhost:8787/service', data);
-    if (res.status === 200) {
-      dataStore.addService(res.data);
-      
-      console.log(res.data)
-      return res.data; // Return the response data
-      
-    } else {
-      throw new Error('Adding service failed');
-    }
+
+export async function addAppointments(appointment) {
+  const res = await axios.post('http://localhost:8787/appointment', appointment);
+  if (res.status === 200) {
+      dataStore.addAppointment(appointment);
+      return 'success';
   }
-  export async function addMeetings(){
-    const res = await axios.post('http://localhost:8787/appointments')
-    if(res.status === 200) {
-      datastore.addMeeting()
-    }
+  else {
+      return 'failed';
   }
-  */
+}

@@ -11,9 +11,7 @@ const [service , setService] = useState('');
 const handleService = () => {
     addServices({'service' : service});
     setService('')
-
     console.log(dataStore.services)
-   
 };
 
     return(

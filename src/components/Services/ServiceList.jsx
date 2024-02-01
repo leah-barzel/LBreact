@@ -4,6 +4,7 @@ import DataStore from '../Store/store.js'
 import AddService from './AddService.jsx';
 import { useState } from 'react';
 import Switch from '@mui/material/Switch';
+import { Button } from '@mui/material';
 
 
 
@@ -20,21 +21,3 @@ const ServiceList = (observer(() => {
 }))
 
 export default ServiceList
-
-/*
-const ServiceList = (observer(() =>{
-
-   
-    return(
-        <>
-        <p> ServiceList</p>
-        {DataStore.services.map((service,index) =>{
-        <div key={index}>{service.details}</div>
-        })}
-        </>
-    );
-}));
-export default ServiceList;
-
-
-    */
