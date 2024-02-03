@@ -3,13 +3,14 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import DateTimePicker from 'react-datetime-picker';
 import dataStore from '../Store/store.js'
 import FormDialog from './FormDialog.jsx';
+import { observer } from 'mobx-react'
 
-const UserHome = () => {
+const UserHome = (observer(() => {
   const [selectedService, setSelectedService] = useState('null');
   const [isAppointmentScheduled, setIsAppointmentScheduled] = useState(false);
   const [isAppointmentError, setIsAppointmentError] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [customer , setCustomer] = useState ({name :'' ,phone: '' ,mail: '' , dateTime:''})
+  const [customer , setCustomer] = useState ({name :'' ,phone: '' ,mail: '' , dateTime:'' })
 
   const handleServiceSelection = (service) => {
     setSelectedService(service);
@@ -25,38 +26,33 @@ const UserHome = () => {
     setCustomer({name :'' ,phone: '' ,mail: '' , dateTime:''})
     
   };
+ 
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = (servicename) => {
+    servicename.preventDefault();
+    console.log('i')
+    dataStore.addAppointment({serviceName:servicename,name:customer.name,phone:customer.phone,mail:customer.mail,dateTime:customer.dateTime})
+  
+  }
     // Send request to server to check for appointment availability
     // Assuming you have a function called "checkAppointmentAvailability" that returns a promise
-    checkAppointmentAvailability(appointmentDateTime)
-      .then((response) => {
-        if (response.status === 200) {
-          setIsAppointmentScheduled(true);
-        } else if (response.status === 400) {
-          setIsAppointmentError(true);
-        }
-      })
-      .catch((error) => {
-        console.error('Error checking appointment availability:', error);
-      });
-  };
+
 
   return (
     <div>
       <h2>Appointment list</h2>
       {dataStore.services.map((service, index) => {
-        return  ((<div key={index}>
+        return  (<div key={index}>
           <h3>{service.name}</h3>
           <p>{service.description}</p>
           <Button variant="contained" onClick={() => handleServiceSelection(service)}>
           Make an appointment about it
           </Button>
             </div>
-     ) )})}
+     )})}
        <FormDialog
         isOpen={isFormOpen}
+        serviceName={selectedService.name}
         handleClose={handleCloseForm}
         handleFormSubmit={handleFormSubmit}
         customer={customer}
@@ -70,5 +66,5 @@ const UserHome = () => {
       )}
     </div>
   );
-};
+}));
 export default UserHome;

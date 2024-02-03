@@ -22,6 +22,7 @@ class DataStore {
         this.services=[...this.services, service];
     }
     setAppointments =  (appointments) =>{
+        console.log("apointment",apointment)
         this.appointments = [...this.appointments , ...appointments]
     }
 

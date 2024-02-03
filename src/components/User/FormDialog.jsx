@@ -2,7 +2,7 @@ import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
 import DateTime from './DateTime';
 
-const FormDialog = ({ isOpen, handleClose, handleFormSubmit, customer, setCustomer }) => {
+const FormDialog = ({ isOpen,serviceName, handleClose, handleFormSubmit, customer, setCustomer, }) => {
   const handleChange = (field, value) => {
     setCustomer(prevCustomer => ({
       ...prevCustomer,
@@ -12,7 +12,7 @@ const FormDialog = ({ isOpen, handleClose, handleFormSubmit, customer, setCustom
 
   return (
     <Dialog open={isOpen} onClose={handleClose}>
-      <DialogTitle>Form</DialogTitle>
+      <DialogTitle>{serviceName}</DialogTitle>
       <DialogContent>
         {/* Add your form fields here */}
         <TextField
@@ -38,7 +38,7 @@ const FormDialog = ({ isOpen, handleClose, handleFormSubmit, customer, setCustom
       <DialogActions> 
         <DateTime />
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleFormSubmit} variant="contained" color="primary">
+        <Button onClick={handleFormSubmit(serviceName)} variant="contained" color="primary">
           Submit
         </Button>
       </DialogActions>
