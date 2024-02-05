@@ -3,6 +3,7 @@ import MeetingsList from "./MeetingsList"
 import './SingleMeeting.css';
 import MeetingStore from '../Store/meeting.js'
 import dataStore from '../Store/store.js'
+import FormDialog from "../User/FormDialog.jsx";
 
 const Meeting = observer(( {index}) =>{
 console.log('Metting is work!')
@@ -27,12 +28,12 @@ else
     }
   };
   return(
-    {/* <>
+    <>
     <div className="SingleMeeting">
         <h3>רשימת הפגישות </h3>
         <h4>{MeetingStore.meetingList[index]}</h4>
         <h4>{dataStore.services}</h4>
-       {/*  <h2 className="SingleMeeting-title">{MeetingStore.meetingList[index].name}</h2>
+        <h2 className="SingleMeeting-title">{MeetingStore.meetingList[index].name}</h2>
         <h2 className="SingleMeeting-description">{MeetingStore.meetingList[index].description}</h2>
         <h2 className="SingleMeeting-price">{MeetingStore.meetingList[index].servicePrice}</h2>
         <h3 className={`SingleMeeting-date ${getMeetingColor(MeetingStore.meetingList[index].dateTime)}`}>
@@ -44,7 +45,7 @@ else
           <h4 className="SingleMeeting-contactInfo">{MeetingStore.meetingList[index].clientEmail}</h4> 
         </div>
       </div>
-  </> */}
+  </> 
   )
 })
 

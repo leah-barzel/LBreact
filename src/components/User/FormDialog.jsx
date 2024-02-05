@@ -38,7 +38,7 @@ const FormDialog = ({ isOpen,serviceName, handleClose, handleFormSubmit, custome
       <DialogActions> 
         <DateTime />
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleFormSubmit(serviceName)} variant="contained" color="primary">
+        <Button onClick={ ()=> {handleFormSubmit(serviceName); handleClose();} }  variant="contained" color="primary">
           Submit
         </Button>
       </DialogActions>

@@ -1,4 +1,4 @@
-import Meeting from './Meeting'
+/*import Meeting from './Meeting'
 import { observer } from 'mobx-react';
 import { useEffect } from "react";
 import MeetingStore from '../Store/meeting.js'
@@ -11,9 +11,11 @@ useEffect(() => {
   return(
     <> 
     <br/>
-    meetingList
     <div>
-    {MeetingStore.meetingList.map((key,index) => <div index = {index}></div>)}
+    {MeetingStore.meetingList.map((key,index) => {
+       return <div index = {index}></div>
+     })}
+  
    
     </div>
     </>
@@ -22,28 +24,28 @@ useEffect(() => {
 
 export default MeetingsList
 
-/*
+*/
 
-mport React, { useEffect } from 'react';
+
 import {observer} from 'mobx-react';
-import DataStore from '../Store/store.js'
-import AddService from './AddService.jsx';
-import { useState } from 'react';
-import Switch from '@mui/material/Switch';
+import dataStore from '../Store/store.js'
 
 
 
 const ServiceList = (observer(() => {
 
-    console.log(DataStore.services);
+    console.log(dataStore.services);
     return (
         <>
-            {DataStore.services.map((service, index) => {
+            {dataStore.services.map((service, index) => {
             return <div key={index}>{service.name}</div>
+            
             })}
         </>
     )
 }))
 
 export default ServiceList
-*/
+
+
+

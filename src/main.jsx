@@ -8,6 +8,8 @@ import MeetingsList from './components/Meetings/MeetingsList.jsx'
 import UserHome from './components/User/UserHome.jsx'
 import AddAppointment from './components/User/AddAppointment.jsx'
 import FormDialog from './components/User/FormDialog.jsx'
+import Meeting from './components/Meetings/Meeting.jsx'
+import UserPage from './components/User/UserPage.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +26,11 @@ const router = createBrowserRouter([
 
   },
   {
+    path : '/Meeting',
+    element : <Meeting/>
+
+  },
+  {
     path: '/UserHome',
     element : <UserHome/>
   },
@@ -34,6 +41,10 @@ const router = createBrowserRouter([
   {
     path : '/FormDialog',
     element : <FormDialog/>
+  },
+  {
+    path : '/UserPage',
+    element : <UserPage/>
   }
 ]);
 

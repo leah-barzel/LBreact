@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SwitchesSize from '../../Services/SwitchesSize';
-
+import UserPage from '../../User/UserPage';
 
 const BisnessData = () => {
   const [name, setName] = useState('My Music');
@@ -22,6 +22,7 @@ const BisnessData = () => {
   };
 
   return (
+    <>
     <div>
       <h2>My music Details</h2>
 
@@ -60,6 +61,16 @@ const BisnessData = () => {
       <br/>
       <SwitchesSize/>
     </div>
+    
+    <UserPage
+        name={name}
+        adminName={adminName}
+        address={address}
+        email={email}
+        details={details}
+        handleDetails={() => setDetails(details ? '' : 'Some business details')}
+      />
+    </>
   );
 };
 

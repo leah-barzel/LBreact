@@ -6,7 +6,6 @@ import UserHome from '../User/UserHome';
 const AdminPage = () => {
 
 
-
   return (
     <>
     <BisnessData/>

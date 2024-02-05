@@ -3,7 +3,8 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import DateTimePicker from 'react-datetime-picker';
 import dataStore from '../Store/store.js'
 import FormDialog from './FormDialog.jsx';
-import { observer } from 'mobx-react'
+import { observer } from 'mobx-react';
+import { addAppointments } from '../Store/server.js'
 
 const UserHome = (observer(() => {
   const [selectedService, setSelectedService] = useState('null');
@@ -29,9 +30,10 @@ const UserHome = (observer(() => {
  
 
   const handleFormSubmit = (servicename) => {
-    servicename.preventDefault();
-    console.log('i')
-    dataStore.addAppointment({serviceName:servicename,name:customer.name,phone:customer.phone,mail:customer.mail,dateTime:customer.dateTime})
+    console.log('form submit')
+    addAppointments({serviceName:servicename,name:customer.name,phone:customer.phone,mail:customer.mail,dateTime:customer.dateTime})
+   
+ 
   
   }
     // Send request to server to check for appointment availability
@@ -40,7 +42,7 @@ const UserHome = (observer(() => {
 
   return (
     <div>
-      <h2>Appointment list</h2>
+      <h2>User Home</h2>
       {dataStore.services.map((service, index) => {
         return  (<div key={index}>
           <h3>{service.name}</h3>
