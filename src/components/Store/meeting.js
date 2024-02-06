@@ -1,80 +1,63 @@
-import { observable, makeObservable, action, computed } from 'mobx';
-import Swal from 'sweetalert2'
 
-// const meeting = {
-
-//     serviceName: '',
-//     serviceDescription: '',
-//     servicePrice: '',
-//     clientName: '',
-//     clientPhone: '',
-//     clientEmail: '',
-//     dateTime: '',
-// }
-
-
-
-//סטור גלובלי שמכיל את כל נתוני הפגישות ופונקציות להוספת פגישות
+import { action, computed, makeObservable, observable } from 'mobx';
 class MeetingStore {
+    meetings = [
+    ];
 
-    meetingList = observable([
-
-    ]);
 
     constructor() {
-        makeObservable(this,
-            {
-                meetingList: observable,
-                addMeeting: action,
-                currentList: computed,
-                initialMeetingList:action
-            }
-        )
-    } 
-    get currentList() {
-        return this.meetingList;
+        makeObservable(this, {
+            meetings: observable,
+            addMeeting: action,
+            colorMeeting: action,
+
+        })
     }
+    setMeeting = (meetings) => {
+        if (meetings.length) {
+            meetings.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
+            this.meetings = [...meetings]
+        } else {
+            this.meetings = [{
+                serviceName: "parent guidance",
+                serviceDescription: "aaaaa",
+                servicePrice: 500,
+                dateTime: "2021-06-20T10:00:00.000Z",
+                clientName: "avi",
+                clientPhone: "050-1234567",
+                clientEmail: "a@a.com",
 
-    addMeeting = async (meeting) => {
-        const response = await fetch("http://localhost:8787/appointment", {
-            method: "POST",
-            body: JSON.stringify(meeting),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        console.log(response.statusText);
-        if (response.status === 200) {
-            this.meetingList = ([...this.meetingList, meeting])
+            },]
 
-            console.log("true")
-            console.log("true")
-            console.log("metting",this.meetingList.length)
-            Swal.fire({
-                title: "נקבעה פגישה",
-                text: "פרטיך נקלטו בהצלחה",
-                icon: "success"
-              });
-              return true
         }
-        Swal.fire({
-            title: 'מצטערים! תאריך זה תפוס',
-            text: '  נא קבעו תאריך אחר',
-            icon: "error"
-          });
-          return false
-      
-     
     }
-    //פונקצית get
-    initialMeetingList = async () => {
-        const response = await fetch("http://localhost:8787/appointments");
-        const data = await response.json();
-        console.log(data);
-        const sortedData = [...data].sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
-        this.meetingList =  sortedData;
-      }
-      
+    addMeeting = (meeting) => {
+
+        this.meetings = [...this.meetings, meeting]
+        this.meetings.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
+
+    }
+
+    colorMeeting(dateTime) {
+        const currentDate = new Date();
+        const meetingDate = new Date(dateTime);
+        const restDay = 7 - meetingDate.getDay()
+
+
+        const lastDayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay() + 7);
+        if (meetingDate > currentDate && meetingDate <= lastDayOfWeek)
+            return 'orange'
+
+
+        if (meetingDate.getDate() === currentDate.getDate() &&
+            meetingDate.getMonth() === currentDate.getMonth() &&
+            meetingDate.getFullYear() === currentDate.getFullYear())
+            return 'red';
+        return 'green';
+
+
+    }
+
 }
+
 export default new MeetingStore();
-// אוביקט יחיד 

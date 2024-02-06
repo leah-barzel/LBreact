@@ -3,7 +3,7 @@ import dataStore from "./store.js";
 
 export async function getServices() {
     const services = await axios.get('http://localhost:8787/services');
-    dataStore.setServices(services);
+    dataStore.setServices(services.data);
 }
 
 export async function addServices(service) {

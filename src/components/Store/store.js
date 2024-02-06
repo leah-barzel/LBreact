@@ -2,9 +2,7 @@ import {makeObservable , observable, action} from "mobx";
 
 class DataStore {
 
-    services = [ 
-     
-    ];
+    services = [ ];
 
     appointments = [];
     
@@ -20,6 +18,9 @@ class DataStore {
     setServices = (services) =>{
         this.services=[...this.services, ...services];
     }
+    // getServices = () =>{
+    // getServices() 
+    // }
     addService = (service) =>{
         this.services=[...this.services, service];
     }

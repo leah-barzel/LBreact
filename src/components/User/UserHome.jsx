@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import DateTimePicker from 'react-datetime-picker';
 import dataStore from '../Store/store.js'
 import FormDialog from './FormDialog.jsx';
 import { observer } from 'mobx-react';
 import { addAppointments } from '../Store/server.js'
+import { getServices } from '../Store/server.js';
+
 
 const UserHome = (observer(() => {
+  
   const [selectedService, setSelectedService] = useState('null');
   const [isAppointmentScheduled, setIsAppointmentScheduled] = useState(false);
   const [isAppointmentError, setIsAppointmentError] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [customer , setCustomer] = useState ({name :'' ,phone: '' ,mail: '' , dateTime:'' })
 
+  useEffect(() => {
+    getServices()
+   }, []);
   const handleServiceSelection = (service) => {
     setSelectedService(service);
     setIsFormOpen(true);
@@ -31,10 +37,6 @@ const UserHome = (observer(() => {
 
   const handleFormSubmit = (servicename) => {
     console.log('form submit')
-    addAppointments({serviceName:servicename,name:customer.name,phone:customer.phone,mail:customer.mail,dateTime:customer.dateTime})
-   
- 
-  
   }
     // Send request to server to check for appointment availability
     // Assuming you have a function called "checkAppointmentAvailability" that returns a promise
@@ -45,10 +47,10 @@ const UserHome = (observer(() => {
       <h2>User Home</h2>
       {dataStore.services.map((service, index) => {
         return  (<div key={index}>
-          <h3>{service.name}</h3>
-          <p>{service.description}</p>
+          {/* <h3>{service.name}</h3>
+          <p>{service.description}</p> */}
           <Button variant="contained" onClick={() => handleServiceSelection(service)}>
-          Make an appointment about it
+          Meeting about {service.name}
           </Button>
             </div>
      )})}
