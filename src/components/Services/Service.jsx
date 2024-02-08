@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
-import { observer } from "mobx-react";
-import { Button, TextField } from '@mui/material';
-import { addServices } from '../Store/server.js';
-import dataStore from '../Store/store.js'
-import ServiceList from './ServiceList.jsx';
 
-const Service = (observer(() =>{
-const [service , setService] = useState('');
+import './service.css'
 
-const handleService = () => {
-    addServices({'service' : service});
-    setService('')
-    console.log(dataStore.services)
-};
 
-    return(
-        <>
-        <TextField id="outlined-basic" variant="outlined" label="serviceName" 
-        value={name} 
-        onChange={(e)=>{ setName(e.target.value)}}/>
-        <br/><br/>
-        <br/><br/>
-       <Button variant="contained"
-       onClick={handleService}>open service</Button>
-        </>
+
+function Service({name,price,discription}) {
+
+    return (
+      <>
+       <div className='service'>
+        <h3 >{name}</h3>
+        <h4>מחיר: {price}</h4>
+        <h5>:תיאור</h5>
+        <h5> {discription}</h5>
+        </div>
+      </>
     )
-}))
- 
-export default Service
-
-   
+  }
+  
+  export default Service

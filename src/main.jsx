@@ -1,57 +1,39 @@
-import App from './App.jsx'
-import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import AdminPage from './components/Admin/AdminPage.jsx'
-import MeetingsList from './components/Meetings/MeetingsList.jsx'
-import UserHome from './components/User/UserHome.jsx'
-import AddAppointment from './components/User/AddAppointment.jsx'
-import FormDialog from './components/User/FormDialog.jsx'
-import Meeting from './components/Meetings/Meeting.jsx'
-import UserPage from './components/User/UserPage.jsx'
+import {  createBrowserRouter,RouterProvider,} from "react-router-dom";
+import App from './App.jsx'
+import './index.css'
+import Admin from './Components/Admin/Admin.jsx'
+import AdminPage from './Components/Admin/AdminPage.jsx'
+import Customer from './Components/Customers/Customer.jsx'
+
+
 const router = createBrowserRouter([
   {
+    path: "/admin",
+    element: <Admin />,
+    children: [
+      {
+        path: "meetings",
+        element: <AdminPage />,
+        
+      },
+      {
+        path: "services",
+        element: <AdminPage />,
+        
+      },
+    ],
+    errorElement:<><div><h1>Error Page</h1></div><h3>404 Not Found</h3></>
+    
+  },
+  {
     path: "/",
-    element: <App />,
-    errorElement: <><div><h1>Error Page</h1></div><h3>404 NOT FOUND</h3></>
+    element: <Customer></Customer>,
+    
   },
-  {
-    path: '/AdminPage',
-    element: <AdminPage/>
-  },
-  {
-    path : '/MeetingsList',
-    element : <MeetingsList/>
-
-  },
-  {
-    path : '/Meeting',
-    element : <Meeting/>
-
-  },
-  {
-    path: '/UserHome',
-    element : <UserHome/>
-  },
-  {
-    path : '/AddAppointment',
-    element : <AddAppointment/>
-  },
-  {
-    path : '/FormDialog',
-    element : <FormDialog/>
-  },
-  {
-    path : '/UserPage',
-    element : <UserPage/>
-  }
-]);
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-)
-
+])
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
 

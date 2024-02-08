@@ -1,48 +1,40 @@
-import React, { useState } from 'react';
-import { observer } from 'mobx-react';
-import axios from 'axios';
+import { useState } from 'react'
+import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import AdminPage from './AdminPage';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import './admin.css'
+import Stack from '@mui/material/Stack';
 
+ 
 
-  const Login = observer(() => {
+function Login({func}) {
+
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate()
-  const handleLogin = () => {
-    const data = { name, password };
-    axios
-      .post('http://localhost:8787/login', data)
-      .then(response => {
-        console.log(response.data);
-        navigate("/AdminPage");
-      })
-      .catch(error => {
-        console.error(error);
-        /*<Alert severity="error">Incorrect login details</Alert>*/
-        alert('Incorrect login details')
-      });
-      setName('')
-      setPassword('')
-  };
 
+   const handleLogin = async () => {
+    axios.post('http://localhost:8787/login', {
+      "name":name,"password":password
+    }).then((res) => {
+      func()
+    }).catch((error) => {
+     alert("אחד מהפרטים שבקשת אינו נכון")
+      setPassword('')
+      setName('')
+    })
+  }
   return (
     <>
-      <TextField id="outlined-basic" label="Name" variant="outlined" 
-      type='text' value={name} onChange={e => setName(e.target.value)}  />
-      <br/><br/>
-      <TextField id="outlined-basic" label="Password" variant="outlined" 
-      type='password' value={password} onChange={e => setPassword(e.target.value)}/>
-      <br/><br/>
-      <Button
-      variant="contained"
-      onClick={handleLogin}>Login</Button>
+   
+   <Stack spacing={2}>
+      <TextField  label="שם משתמש" value={name} onChange={(e) => setName(e.target.value)} />
+      
+      <TextField  label="סיסמא" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+
+      <Button onClick={handleLogin} variant="contained" >הכנס</Button>
+       </Stack>
     </>
-  );
-});
+  )
+}
 
-export default Login;
-
-
+export default Login

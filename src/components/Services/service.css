@@ -1,0 +1,43 @@
+
+
+.service{
+    border: 2px solid;
+    background-color: rgb(203, 229, 251);
+    border-width: 3px;
+    margin: 50px;
+    height: 250px;
+    width: 250px;
+    padding-right: 50px;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    
+}
+
+.allServices{
+    display: flex;
+    flex-wrap :wrap-reverse;
+
+}
+.button{
+    position:absolute;
+    
+
+}
+.addService{
+    position:sticky;
+    margin-left: 14%;
+    margin-top: 0;
+    padding: 70;
+    background-color:white;
+    }
+    .center {
+        margin: auto;
+        width: 10%;
+        height: 5%;
+    
+        padding: 10px;
+      }
+
+    

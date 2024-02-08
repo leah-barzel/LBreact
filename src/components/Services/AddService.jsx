@@ -1,38 +1,48 @@
-import React, { useState } from 'react';
 import { observer } from "mobx-react";
-import { Button, TextField } from '@mui/material';
-import { addServices } from '../Store/server.js';
-import dataStore from '../Store/store.js'
-
-const AddService = (observer(({onClose}) =>{
-const [name , setName] = useState('');
-const [description , setDescription] = useState('')
+import { useState } from 'react';
+import { TextField } from "@mui/material";
+import Button from '@mui/material/Button';
+import { addService } from "../../Stores/Server";
+import Stack from '@mui/material/Stack';
 
 
-const handleAddService = () => {
-    addServices({'name':name , 'description':description});
-    setName('')
-    setDescription('')
-    console.log('its work')
-    console.log(dataStore.services)
-    onClose()
-};
-    return(
-        <>
-        <TextField id="outlined-basic" variant="outlined" label="serviceName" 
-        value={name} 
-        onChange={(e1)=>{ setName(e1.target.value)}}/>
-        <br/><br/>
-        <TextField id="outlined-basic" variant="outlined" label="description" 
-        value={description} 
-        onChange={(e2)=>{ setDescription(e2.target.value)}}/>
-        <br/><br/>
-       <Button variant="contained"
-       onClick={handleAddService}>Add service</Button>
-        </>
-    )
+const AddService = (observer(({ func }) => {
+
+  const [formData, setFormData] = useState({
+    name: '',
+    price: '',
+    discription: '',
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    func();
+    addService(formData);
+
+  }
+
+  return (
+    <>
+      <div className="addService">
+        <form onSubmit={handleSubmit} className='form'>
+        <Stack direction="column" spacing={2}>
+          <TextField label="שם" name="name" value={formData.name} onChange={handleChange} />
+        
+          <TextField label="מחיר" name="price" value={formData.price} onChange={handleChange}/>
+    
+          <TextField label="תיאור" name="description" value={formData.description} onChange={handleChange}  />
+         
+          <Button type='submit' variant="contained">שמור</Button>
+        </Stack>
+        </form>
+      </div>
+    </>
+  )
 }))
- 
-export default AddService
 
-   
+export default AddService
