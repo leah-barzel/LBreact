@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import { addService } from "../../Stores/Server";
 import Stack from '@mui/material/Stack';
-
+import './service.css'
 
 const AddService = (observer(({ func }) => {
 
@@ -28,7 +28,7 @@ const AddService = (observer(({ func }) => {
 
   return (
     <>
-      <div className="addService">
+      <div className="addServiceForm">
         <form onSubmit={handleSubmit} className='form'>
         <Stack direction="column" spacing={2}>
           <TextField label="שם" name="name" value={formData.name} onChange={handleChange} />

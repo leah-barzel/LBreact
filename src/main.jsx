@@ -10,7 +10,7 @@ import Customer from './Components/Customers/Customer.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/admin",
+    path: "/adminpage",
     element: <Admin />,
     children: [
       {

@@ -26,7 +26,7 @@ const AddMeeting=(observer(({func})=> {
   return (
     <>
    
-       <div className='addMeeting'>
+       <div className='allservices'>
         <form onSubmit={handleSubmit} className='form'>
            <Stack direction="column" spacing={2}>  
           <TextField label="סוג הפגישה" name="type" value={formData.type} onChange={handleChange} />

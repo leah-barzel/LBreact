@@ -26,4 +26,20 @@
     margin-left: 10px;
   }
   
- 
+  .link:hover:before,
+  .link:hover:after {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .line:before,
+  .line_from_sides:after,
+  .two_lines:after,
+  .two_lines_move:after {
+    width: 100%;
+    background: var(--section-color);
+    height: 5px;
+    bottom: 0;
+    transition: all 0.4s;
+    border-radius: 50px;
+  }

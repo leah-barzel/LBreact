@@ -5,7 +5,7 @@ import AddMeeting from '../Meeting/AddMeeting';
 import DataStore from "../../Stores/DataStore";
 import { getServices } from "../../Stores/Server";
 import Button from '@mui/material/Button';
-
+import '../Services/Service.css';
 
 const ShowServiceCustomer = (observer(() => {
 
@@ -28,7 +28,7 @@ const ShowServiceCustomer = (observer(() => {
             {isAdd ? <AddMeeting func={handleAddMeeting} ></AddMeeting> : <Button variant="contained" onClick={handleAddMeeting}>לקביעת פגישה</Button>}
             <div className="allServices">
                 {servingList.map((service, i) =>
-                    <Service key={i} name={service.name} price={service.price} discription={service.description}/>
+                <Service key={i} name={service.name} price={service.price} discription={service.description}/>
                 )}
             </div>
             

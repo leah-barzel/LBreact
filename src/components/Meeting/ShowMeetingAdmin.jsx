@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import Meeting from "./Meeting"
 import DataStore from "../../Stores/DataStore";
-import { getMeetings } from '../../Stores/Server'
+import { getMeetings } from '../../Stores/Server';
+import './meeting.css';
 
 const ShowMeetingAdmin = (observer(() => {
 
@@ -21,11 +22,21 @@ const ShowMeetingAdmin = (observer(() => {
     const yyyy = today.getFullYear();
     return `${yyyy}-${mm}-${dd}`;
   };
+  // const getAppointmentStyle = (appointmentDate) => {
+  //   const currentDate = getCurrentDate();
+  //   if (appointmentDate === currentDate) {
+  //     return 'red-background';
+  //   } else if (new Date(appointmentDate) > new Date(currentDate) && new Date(appointmentDate) <= new Date(currentDate).getTime() + 6 * 24 * 60 * 60 * 1000) {
+  //     return 'orange-background';
+  //   } else {
+  //     return 'green-background';
+  //   }
+  // };
   const getAppointmentStyle = (appointmentDate) => {
     const currentDate = getCurrentDate();
     if (appointmentDate === currentDate) {
       return 'red-background';
-    } else if (new Date(appointmentDate) > new Date(currentDate) && new Date(appointmentDate) <= new Date(currentDate).getTime() + 6 * 24 * 60 * 60 * 1000) {
+    } else if (new Date(appointmentDate).getTime() > new Date(currentDate).getTime() && new Date(appointmentDate).getTime() <= new Date(currentDate).getTime() + 6 * 24 * 60 * 60 * 1000) {
       return 'orange-background';
     } else {
       return 'green-background';

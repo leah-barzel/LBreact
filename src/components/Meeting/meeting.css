@@ -1,4 +1,8 @@
-
+/*  display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 50px;
+*/
 .allMeetings{
     display: flex;
     flex-wrap: wrap-reverse;
@@ -26,37 +30,45 @@ h4{
 .red-background {
     border: 2px solid;
     border-width: 5px;
-    margin: 50px;
-    margin-left: 10%;
+    margin: 20px;
+
     height: 300px;
     width: 300px;
-    padding-right: 50px;
-    padding-left: 0;
-    border-color: red;
+    padding: 20px;
+    border: 2px solid #ccc;
+    background-color: #ff0000;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 
   }
   
   .orange-background {
     border: 2px solid;
     border-width: 5px;
-    margin: 50px;
-    margin-left: 10%;
+    margin: 20px;
     height: 300px;
     width: 300px;
-    padding-right: 50px;
-    padding-left: 0;
-    border-color: orange;
+    padding: 20px;
+    border: 2px solid #ccc;
+    background-color: rgb(255, 115, 0);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
   
   .green-background {
     border: 2px solid;
     border-width: 5px;
-    margin: 50px;
-    margin-left: 10%;
+    margin: 20px;
     height: 300px;
     width: 300px;
-    padding-right: 50px;
-    padding-left: 0;
-    border-color: green;
+    padding: 20px;
+
+    border: 2px solid #ccc;
+    background-color: #a3ffa3;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
  

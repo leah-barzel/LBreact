@@ -6,7 +6,7 @@ import DataStore from "../../Stores/DataStore";
 import { getServices } from "../../Stores/Server";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import './service.css'
+import './Service.css'
 
 const ShowServiceAdmin = (observer(() => {
     const [isAdd, setIsAdd] = useState(false);
@@ -26,20 +26,23 @@ const ShowServiceAdmin = (observer(() => {
     return (
         <>
            
-            <div className="allServices">
+                <div className="allServices">
                 {isAdd ? <AddService func={handleAddService}></AddService>
                  :
                  <Button variant="contained" onClick={handleAddService} className="center">הוסף שירות</Button>}
-                {servingList.map((service, i) =>
-                    <Stack direction="column" spacing={3}>
-                    <Service className="padding" key={i} name={service.name} price={service.price} discription={service.description}/>
-                    </Stack>
-                    
-                )}
-            </div>    
+                </div> 
+                <div className="allServices">
+                {servingList.map((service, i) =>(
+                <Service key={i} name={service.name} price={service.price} discription={service.description}/>
+                ))}
+                </div>    
            
         </>
-    )
+        )
+    
+  
 }))
 
 export default ShowServiceAdmin
+
+
